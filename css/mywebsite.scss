@@ -1,5 +1,5 @@
 //mixins
-@mixin gradiant-background($start, $end) {
+@mixin gradient-background($start, $end) {
     background: $start;
     background: linear-gradient(to bottom, $start, $end);
 }
