@@ -1,0 +1,28 @@
+.featured-articles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+   
+  .article-cards {
+    min-height: calc(100vh - 300px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .card {
+    min-height: 35rem;
+    max-width: 23rem;
+  }
+   
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+   
+  #img1, #img2, #img3 {
+    height: 228.42px;
+  }

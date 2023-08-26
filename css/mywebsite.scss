@@ -1,0 +1,139 @@
+//mixins
+@mixin gradiant-background($start, $end) {
+    background: $start;
+    background: linear-gradient(to bottom, $start, $end);
+}
+
+// main styles
+.background:not(.nav-link) {
+    @include gradient-background (#e1fcff, #fcfcfc);
+}
+
+.sign-up {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
+}
+
+.nav-link {
+    font-size: 1.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
+    padding: 1rem;
+    margin: 1rem;
+    color: black;
+    text-decoration: none;
+        &:active {
+            text-decoration-line: underline;
+        }
+        &:hover {
+            background-color: rgba(181, 183, 172, 0.377);
+        }
+}
+
+img {
+    float: right;
+    box-shadow: 5px 5px 5px #999;
+    max-width: 10em;
+}
+
+// animation for media
+
+.fade-in {
+    animation: fadeIn ease 15s;
+    -webkit-animation: fadeIn ease 15s;
+    -moz-animation: fadeIn ease 15s;
+    -o-animation: fadeIn ease 15s;
+    -ms-animation: fadeIn ease 15s;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+.header {
+    text-align: center;
+    grid-area: header;
+}
+
+.main {
+    grid-area: main;
+}
+
+.para {
+    text-indent: 3em;
+    text-align: justify;
+}
+
+.aside-two {
+    grid-area: aside-two;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+// styles for grid
+
+.wrapper {
+    width: min(100% - 2rem, 1200px);
+    margin-inline: auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+      "header header header header"
+      "aside-one main main aside-two"
+      "footer footer footer footer";
+    min-height: 80vh;
+    margin-top: 4rem;
+    gap: 0.5rem;
+}
+
+.grid-item {
+    font-size: 1.5rem;
+    padding: 1rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+// media style
+
+// @media cancel animation for non-movement settings
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {animation: none}
+}
+
+// media queries for different screen size
+
+@media (max-width: 650px) {
+    .grid-container {
+      display: grid;
+      grid-template-areas:
+        "header"
+        "aside-two"
+        "main"
+        "main"
+        "main"
+        "footer";
+    }
+}
