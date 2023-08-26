@@ -1,6 +1,6 @@
 .background:not(.nav-link) {
-  background: #e1fcff;
-  background: linear-gradient(to bottom, #e1fcff, #fcfcfc);
+  background: #caf5fa;
+  background: linear-gradient(to bottom, #caf5fa, #fcfcfc);
 }
 
 .sign-up {
