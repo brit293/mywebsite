@@ -94,6 +94,14 @@ input[type=submit] {
     grid-area: main;
 }
 
+.main-left {
+    grid-area: main-left;
+}
+
+.main-right {
+    grid-area: main-right;
+}
+
 .para {
     text-indent: 3em;
     text-align: justify;
@@ -118,7 +126,7 @@ input[type=submit] {
     display: grid;
     grid-template-areas:
       "header header header header"
-      "aside-one main main aside-two"
+      "aside-one main-left main main-right aside-two"
       "footer footer footer footer";
     min-height: 80vh;
     margin-top: 4rem;
@@ -147,9 +155,9 @@ input[type=submit] {
       grid-template-areas:
         "header"
         "aside-two"
+        "main-left"
         "main"
-        "main"
-        "main"
+        "main-right"
         "footer";
     }
 }
