@@ -28,6 +28,11 @@ img {
   max-width: 10em;
 }
 
+textarea {
+  min-height: 200px;
+  max-height: 400px;
+}
+
 .fade-in {
   animation: fadeIn ease 15s;
   -webkit-animation: fadeIn ease 15s;
