@@ -97,7 +97,7 @@ input[type=submit]:hover {
 
 .grid-container {
   display: grid;
-  grid-template-areas: "header header header header" "aside-one main-left main main-right aside-two" "footer footer footer footer";
+  grid-template-areas: "header header header header" "aside-one main main main aside-two" "footer footer footer footer";
   min-height: 80vh;
   margin-top: 4rem;
   gap: 0.5rem;
