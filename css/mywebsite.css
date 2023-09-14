@@ -69,14 +69,6 @@ input[type=submit]:hover {
   grid-area: main;
 }
 
-.main-left {
-  grid-area: main-left;
-}
-
-.main-right {
-  grid-area: main-right;
-}
-
 .para {
   text-indent: 3em;
   text-align: justify;
@@ -117,6 +109,6 @@ input[type=submit]:hover {
 @media (max-width: 650px) {
   .grid-container {
     display: grid;
-    grid-template-areas: "header" "aside-two" "main-left" "main" "main-right" "footer";
+    grid-template-areas: "header" "aside-two" "main" "main" "main" "footer";
   }
 }/*# sourceMappingURL=mywebsite.css.map */

@@ -94,13 +94,6 @@ input[type=submit] {
     grid-area: main;
 }
 
-.main-left {
-    grid-area: main-left;
-}
-
-.main-right {
-    grid-area: main-right;
-}
 
 .para {
     text-indent: 3em;
@@ -155,9 +148,9 @@ input[type=submit] {
       grid-template-areas:
         "header"
         "aside-two"
-        "main-left"
         "main"
-        "main-right"
+        "main"
+        "main"
         "footer";
     }
 }
