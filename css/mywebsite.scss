@@ -118,9 +118,9 @@ input[type=submit] {
 .grid-container {
     display: grid;
     grid-template-areas:
-      "header header header header"
+      "header header header header header"
       "aside-one main main main aside-two"
-      "footer footer footer footer";
+      "footer footer footer footer footer";
     min-height: 80vh;
     margin-top: 4rem;
     gap: 0.5rem;
