@@ -127,3 +127,15 @@ function validateForm() {
     alert("Form submitted successfully!");
     return true
 }
+
+//Button mouseover/mouse out
+const mySubmitBtn = document.getElementById("my-submit")
+
+
+mySubmitBtn.addEventListener("mouseover", function () {
+  mySubmitBtn.style.backgroundColor = "blue"
+})
+
+mySubmitBtn.addEventListener("mouseout", function () {
+    mySubmitBtn.style.backgroundColor = "#caf5fa"
+  })
