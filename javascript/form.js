@@ -1,131 +1,90 @@
-function validateFname(fname) {
-    //make sure not empty
-    if (fname.length=0) {
-        return "First name cannot be empty";
-    };
+const form = document.getElementById("form")
+const firstName = document.getElementById("fname");
+const lastName = document.getElementById("lname");
+const email = document.getElementById("email");
+const subject = document.getElementById("subject");
+const subject2 = document.getElementById("subject2");
 
-    //Check that the name only contains letters and spaces
-    if (!fname.match(/^[a-zA-z\s]+$/)) {
-        return "First name can only contain letters and spaces";
-    };
+form.addEventListener('submit', e => {
+    e.preventDefault();
 
-    //Check length of fname
-    if (fname.length > 15) {
-        return "First name must be 15 characters or less";
-    };
-    if (fname.length < 2) {
-        return "First name must be at least 2 characters long";
-    };
+    validateInputs();
+});
 
-    //name is valid
-    return "";
-};
+function setError(element, message) {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
 
-function validateLname(lname) {
-    //make sure not empty
-    if (lname.length=0) {
-        return "Last name cannot be empty";
-    };
-
-    //Check that the name only contains letters and spaces
-    if (!lname.match(/^[a-zA-z\s]+$/)) {
-        return "Last name can only contain letters and spaces";
-    };
-
-    //Check length of fname
-    if (lname.length > 15) {
-        return "Last name must be 15 characters or less";
-    };
-    if (lname.length < 2) {
-        return "Last name must be at least 2 characters long";
-    };
-
-    //name is valid
-    return "";
-};
-
-function validateEmail(email) {
-    //Make sure the email is not empty
-    if (email.length == 0) {
-        return "Email cannot be empty";
-    }
-
-    //Check that the email contains an @ symbol and a .
-    if (!email.match(/^[^@]+@[^@.]+\.[^@]*\w\w$/)) {
-        return "Invalid email address";
-    }
-
-    //Make sure the @ symbol is not the first character
-    if (email.indexOf("@") == 0) {
-        return "Invalid email address";
-    }
-
-    //Make sure the email is not too long
-    if (email.match(/\s/)) {
-        return "Email cannot contain spaces";
-    }
-
-    if (email.length > 100) {
-        return "Email must be less that 100 characters";
-    }
-
-    //Email valid
-    return "";
-};
-
-function validateTextarea(textarea) {
-    //Make sure not empty
-    if (textarea.length == 0) {
-        return "Textarea cannot be empty";
-    }
-
-    //Check the length of the textarea
-    if (textarea.length > 1000) {
-        return "Textarea must be 1000 characters or fewer";
-    }
-
-    //Textarea is valid
-    return "";
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success');
 }
 
-function validateForm() {
+function setSuccess(element) {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+}
+
+function validateInputs() {
     //Get form values
-    var firstName = document.getElementById("fname"),value;
-    var lastName = document.getElementById("lname").value;
-    var email = document.getElementById("email").value;
-    var subject = document.getElementById("subject").value;
+    const firstNameValue = firstName.value.trim();
+    const lastNameValue = lastName.value.trim();
+    const emailValue = email.value.trim();
+    const subjectValue = subject.value.trim();
+    const subject2Value = subject2.value;
 
-    //Validate fname
-    var fnameError = validateFname(fname);
-    if (fnameError) {
-        alert(fnameError);
-        return false;
+    if(firstNameValue === '') {
+        setError(firstNameValue, 'First Name is required');
+    } else if (!firstName.match(/^[a-zA-z\s]+$/)) {
+        setError(firstName, 'First name can only contain letters and spaces')
+    } else if  (firstNameValue.length > 15) {
+        setError(firstName,'First name must be 15 characters or less')
+    } else if (firstNameValue.length < 2) {
+        setError(firstName, 'First name must be at least 2 characters long')
+    } else {
+        setSuccess(firstName)
     }
 
-    //Validate lname
-    var lnameError = validateLname(lname);
-    if (lnameError) {
-        alert(lnameError);
-        return false;
+    if(!lastNameValue.match(/^[a-zA-z\s]+$/)) {
+        setError(lastName, 'Last name can only contain letters and spaces')
+    } else if  (lastNameValue.length > 15) {
+        setError(lastName,'Last name must be 15 characters or less')
+    } else {
+        setSuccess(lastName)
     }
 
-    //Validate email
-    var emailError = validateEmail(email);
-    if (emailError) {
-        alert(emailError);
-        return false;
+    if (emailValue === '') {
+        setError(email, 'Email is required');
+    } else if (!email.match(/^[^@]+@[^@.]+\.[^@]*\w\w$/)) {
+        setError(email, 'Invalid email address');
+    } else if (email.indexOf("@") == 0) {
+        setError(email, 'Invalid email address');
+    } else if (email.match(/\s/)) {
+        setError(email, 'Email cannot contain spaces');
+    } else if (email.length > 100) {
+        setError(email, 'Email must be less that 100 characters');
+    } else {
+        setSuccess(email)
     }
 
-    //Validate textarea
-    var subjectError = validateSubject();
-    if (subjectError) {
-        alert(subjectError);
-        return false;
+    if (subjectValue === '') {
+        setError(subject, 'Subject is required')
+    } else {
+        setSuccess(subject)
     }
 
-    //Form is valid
-    alert("Form submitted successfully!");
-    return true
+    if (subject2Value === '') {
+        setError(subject2, 'Text is required')
+    } else if (textarea.length > 1000) {
+        setError(subject2, 'Textarea must be 1000 characters or fewer');
+    } else {
+        setSuccess(subject2)
+    }
+
 }
 
 //Button mouseover/mouse out

@@ -28,22 +28,6 @@ img {
   max-width: 10em;
 }
 
-textarea {
-  min-height: 200px;
-  max-height: 400px;
-}
-
-input[type=submit] {
-  background-color: #caf5fa;
-  color: #010101;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-input[type=submit]:hover {
-  background-color: rgba(177, 243, 250, 0.8862745098);
-}
-
 .fade-in {
   animation: fadeIn ease 15s;
   -webkit-animation: fadeIn ease 15s;
@@ -62,7 +46,7 @@ input[type=submit]:hover {
 }
 .header {
   text-align: center;
-  grid-area: header span;
+  grid-area: header;
 }
 
 .main {
