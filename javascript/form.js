@@ -1,91 +1,112 @@
-const form = document.getElementById("form")
-const firstName = document.getElementById("fname");
-const lastName = document.getElementById("lname");
-const email = document.getElementById("email");
-const subject = document.getElementById("subject");
-const subject2 = document.getElementById("subject2");
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    validateInputs();
-});
-
-function setError(element, message) {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
-}
-
-function setSuccess(element) {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-}
-
 function validateInputs() {
-    //Get form values
-    const firstNameValue = firstName.value.trim();
-    const lastNameValue = lastName.value.trim();
-    const emailValue = email.value.trim();
-    const subjectValue = subject.value.trim();
-    const subject2Value = subject2.value;
+    //declaration of variables
+    var SubmitForm
+    var FormErrors
+    
+    //Initially set SubmitForm to true
+    SubmitForm = true;
 
-    if(firstNameValue === '') {
-        setError(firstNameValue, 'First Name is required');
-    } else if (!firstName.match(/^[a-zA-z\s]+$/)) {
-        setError(firstName, 'First name can only contain letters and spaces')
-    } else if  (firstNameValue.length > 15) {
-        setError(firstName,'First name must be 15 characters or less')
-    } else if (firstNameValue.length < 2) {
-        setError(firstName, 'First name must be at least 2 characters long')
+    //Get form values and assume dangerous for now
+    var firstNameValue = new String(document.MySiteform.firstName.value);
+    var lastNameValue = new String(document.MySiteform.lastName.value);
+    var emailValue = new String(document.MySiteform.email.value);
+    var subjectValue = new String(document.MySiteform.subject.value);
+    var subject2Value = new String(document.MySiteform.subject2.value);
+
+    //Check that user inputs are not blank
+    if(firstNameValue.length<1 || lastNameValue.length<1 || emailValue.length<1 || subjectValue.length<1 || subject2Value.length<1 ) 
+    {
+    FormErrors = "All fields are mandatory. Please complete the form.";
+    SubmitForm = false;
     } else {
-        setSuccess(firstName)
+    var nameFilter = /(?:^[a-zA-Z\s]+$)/
+        
+    if (!nameFilter.test(firstNameValue) || !nameFilter.test(lastNameValue))
+        {
+            FormErrors = "First name p last name field contains invalid field entries. Please correct before submitting";
+            SubmitForm = false;
+        }
+    }
+    if (SubmitForm == false) 
+    {
+        //The form cannot be submitted.
+        alert(FormErrors);
+        return false;
+    }
+    else if  (firstNameValue.length > 15 || lastNameValue.length > 15) 
+    {
+        FormErrors = "First name and last name must be 15 characters or less.";
+        SubmitForm = false;
+    } 
+    if (SubmitForm == false)
+    {
+        //The form cannot be submitted
+        alert(FormErrors);
+        return false;
+    } else {
+
+    var emailFilter = /(?:^|[\\/])\.\.(?:[\\/]|$)/
+          
+    if (!emailFilter.test(emailValue)) 
+        {
+            FormErrors = "Invalid email address";
+            SubmitForm = false;
+        }
     }
 
-    if(!lastNameValue.match(/^[a-zA-z\s]+$/)) {
-        setError(lastName, 'Last name can only contain letters and spaces')
-    } else if  (lastNameValue.length > 15) {
-        setError(lastName,'Last name must be 15 characters or less')
-    } else {
-        setSuccess(lastName)
+    if (SubmitForm == false)
+    {
+        alert(FormErrors);
+        return false;
+    } else if (subject2Value.length > 1000) {
+        FormErrors = "Textarea must be 1000 characters or fewer";
+        SubmitForm = false;
     }
 
-    if (emailValue === '') {
-        setError(email, 'Email is required');
-    } else if (!email.match(/^[^@]+@[^@.]+\.[^@]*\w\w$/)) {
-        setError(email, 'Invalid email address');
-    } else if (email.indexOf("@") == 0) {
-        setError(email, 'Invalid email address');
-    } else if (email.match(/\s/)) {
-        setError(email, 'Email cannot contain spaces');
-    } else if (email.length > 100) {
-        setError(email, 'Email must be less that 100 characters');
+    if (SubmitForm == false)
+    {
+        alert(FormErrors);
+        return false;
     } else {
-        setSuccess(email)
-    }
 
-    if (subjectValue === '') {
-        setError(subject, 'Subject is required')
-    } else {
-        setSuccess(subject)
-    }
+        //This filter may need to be adjusted to prevent code from being typed in this box
+        var sub2Filter = /(?:^[a-zA-Z\s\.\.]+$)/
+              
+        if (!sub2Filter.test(subject2Value))
+            {
+            alert(FormErrors);
+            return false;
+            }
+        } 
+        if (SubmitForm == false)
+        {
+            //The form cannot be submitted.
+        alert(FormErrors);
+        return false;
+        } else {
+         //SANITIZE user inputs by allowing only [a-z 0-9 _ - . @] 
+        //strip forbidden characters
+        firstNameValue = firstNameValue.replace(/[^a-z0-9\s\-]/gim,"");
+        firstNameValue = firstNameValue.trim();
+        lastNameValue = lastNameValue.replace(/[^a-z0-9\s\-]/gim,"");
+        lastNameValue = lastNameValue.trim();
+        emailValue = emailValue.replace(/[^a-z0-9_@.-]/gim,"");
+        emailValue = emailValue.trim();
+        subjectValue = subjectValue.replace(/[^a-z0-9\s\-]/gim,"");
+        subjectValue = subjectValue.trim();
+        subject2Value = subject2Value.replace(/^[a-zA-Z\s\.\.]/gim,"")
+        subject2Value = subject2Value.trim();
 
-    if (subject2Value === '') {
-        setError(subject2, 'Text is required')
-    } else if (textarea.length > 1000) {
-        setError(subject2, 'Textarea must be 1000 characters or fewer');
-    } else {
-        setSuccess(subject2)
     }
-
 }
+
+
+    
+
+
+
+
+
 
 //Button mouseover/mouse out
 const mySubmitBtn = document.getElementById("my-submit")
